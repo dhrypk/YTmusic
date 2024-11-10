@@ -2,11 +2,17 @@
   "version": 2,
   "builds": [
     {
-      "src": "app.py",
-      "use": "@vercel/python",
-      "config": {
-        "installCommand": "pip install --no-cache-dir -r requirements.txt"
-      }
+      "src": "server.py",
+      "use": "@vercel/python"
     }
-  ]
+  ],
+  "env": {
+    "FLASK_ENV": "production"
+  },
+  "build": {
+    "env": {
+      "PIP_NO_CACHE_DIR": "off"
+    },
+    "command": "pip install --disable-pip-version-check --target . --upgrade -r requirements.txt"
+  }
 }
