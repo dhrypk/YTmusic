@@ -71,6 +71,6 @@ def get_recommendations():
     recommendations = ytmusic.get_watch_playlist(video_id)["tracks"]
     return jsonify(recommendations)
 
-# Vercel handler to expose the Flask app to serverless
-def handler(request):
-    return app(request.environ, start_response=lambda *args: None)
+# Vercel handler to expose the Flask app to serverless (make sure to use correct Vercel structure)
+def handler(request, context):
+    return app(request, context)
