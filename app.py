@@ -4,6 +4,19 @@ from ytmusicapi import YTMusic
 app = Flask(__name__)
 ytmusic = YTMusic()
 
+# Root endpoint to list all available endpoints
+@app.route("/", methods=["GET"])
+def index():
+    endpoints = {
+        "/search": "Search for songs. Query parameter: 'q' (song name)",
+        "/song": "Get song details. Query parameter: 'id' (videoId)",
+        "/album": "Get album details. Query parameter: 'id' (albumId)",
+        "/playlist": "Get playlist details. Query parameter: 'id' (playlistId)",
+        "/artist": "Get artist details. Query parameter: 'id' (artistId)",
+        "/recommendations": "Get recommendations based on a song. Query parameter: 'id' (videoId)"
+    }
+    return jsonify(endpoints)
+
 # Endpoint to search for songs
 @app.route("/search", methods=["GET"])
 def search_song():
